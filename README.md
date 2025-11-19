@@ -1,11 +1,21 @@
 # ITS Now
 
+## Pendahuluan
+<p align="justify">
+&emsp;Website ITS Now serta laporan pendukung ini dibuat sebagai suatu pertanggung jawaban akademik dalam memenuhi tugas mata kuliah <b>Pemrograman Web (A)</b>. Pembuatan website ini bertujuan untuk menyelesaikan suatu masalah nyata yang terdapat di lingkungan kampus, melalui penyediaan solusi digital berbasis web. Harapannya laporan ini dapat berfungsi untuk memberikan gambaran terkait website yang telah dibuat, sehingga dapat menjadi acuan dalam evaluasi maupun penilaian penugasan.
+</p>
+
+<p align="justify">
+Dibuat oleh:
+</p>
+
 | Nama | NRP|
 |-------------------------------|---------------|
 | Muhammad Rakha Hananditya R.	| 5027241015	|
 
 ## Daftar Isi
 
+- [Pendahuluan](#pendahuluan)
 - [Daftar Isi](#daftar-isi)
 - [Deskripsi Singkat](#deskripsi-singkat)
 - [Latar Belakang Masalah](#latar-belakang-masalah)
