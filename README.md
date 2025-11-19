@@ -34,13 +34,20 @@ Di lingkungan ITS, persebaran informasi seputar ITS masih belum efisien dikarena
 ## Solusi yang Ditawarkan
 
 <p align="justify">
-Website untuk <i>broadcasting</i> dan berdiskusi antar mahasiswa ITS, di mana sesama mahasiswa dapat:
-<ol>
-	<li>Bertanya dan bertukar informasi terkait hal seputar lingkungan ITS, misal: "<i>Di Keputih mana ya Nasi Pecel yang paling enak?</i>"</li>
-	<li>Bertanya dan mengumumkan terkait barang yang hilang dan ditemukan.</li>
-	<li>Bertanya dan berdiskusi terkait tugas kuliah.</li>
-	<li>Mengumumkan penjualan barang dan jasa.</li>
-	<li>Mengumumkan terbukanya posisi staff untuk suatu event (<i>open recruitment</i>).</li>
-	<li>Mengumumkan adanya event yang terjadi di suatu tempat di ITS.</li>
-</ol>
+	Website untuk <i>broadcasting</i> dan berdiskusi antar mahasiswa ITS, di mana sesama mahasiswa dapat:
+	<ol>
+		<li>Bertanya dan bertukar informasi terkait hal seputar lingkungan ITS, misal: "<i>Di Keputih mana ya Nasi Pecel yang paling enak?</i>" atau "<i>Rek, sekarang CCWS yang deket K1 Mart penuh atau tidak ya?</i>"</li>
+		<li>Bertanya dan mengumumkan terkait barang yang hilang dan ditemukan.</li>
+		<li>Bertanya dan berdiskusi terkait tugas kuliah.</li>
+		<li>Mengumumkan penjualan barang dan jasa.</li>
+		<li>Mengumumkan terbukanya posisi staff untuk suatu event (<i>open recruitment</i>).</li>
+		<li>Mengumumkan adanya event yang terjadi di suatu tempat di ITS.</li>
+		<li>Berkomentar dan berbincang terkait diskusi yang sudah dibuka sebelumnya.</li>
+	</ol>
+</p>
+
+<p align="justify">
+	&emsp;Terlebih dari itu, setiap kali mahasiswa ingin membuka suatu diskusi, maka mahasiswa tersebut dapat membuat postingan baru. Di situ, mahasiswa lain dapat secara anonim memilih untuk mendukung (<i>upvote</i>) atau tidak mendukung (<i>downvote</i>) postingan tersebut. Semakin banyak dukungan, semakin tinggi posisi postingan tersebut di halaman website.
+	<br><br>
+	&emsp;Tujuannya adalah agar postingan yang paling relevan, bermanfaat, dan disukai banyak mahasiswa dapat muncul di bagian teratas, serta memudahkan mahasiswa lain untuk menemukan informasi tersebut. Selain itu, fitur ini berguna untuk menghindari postingan yang sepatutnya untuk dibagikan, karena semakin banyaknya <i>downvote</i> dari mahasiswa lain dapat menyebabkan postingan tersebut dihapus.
 </p>
