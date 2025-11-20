@@ -9,7 +9,7 @@
 Dibuat oleh:
 </p>
 
-| Nama | NRP|
+| Nama							| NRP			|
 |-------------------------------|---------------|
 | Muhammad Rakha Hananditya R.	| 5027241015	|
 

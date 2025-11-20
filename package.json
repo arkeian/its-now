@@ -1,0 +1,26 @@
+{
+  "name": "its-now",
+  "version": "1.0.0",
+  "description": "<p align=\"justify\"> &emsp;Website ITS Now serta laporan pendukung ini dibuat sebagai suatu pertanggung jawaban akademik dalam memenuhi tugas mata kuliah <b>Pemrograman Web (A)</b>. Pembuatan website ini bertujuan untuk menyelesaikan suatu masalah nyata yang terdapat di lingkungan kampus, melalui penyediaan solusi digital berbasis web. Harapannya laporan ini dapat berfungsi untuk memberikan gambaran terkait website yang telah dibuat, sehingga dapat menjadi acuan dalam evaluasi maupun penilaian penugasan. </p>",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "backend": "npm run dev --prefix backend",
+    "frontend": "npm run dev --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arkeian/its-now.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/arkeian/its-now/issues"
+  },
+  "homepage": "https://github.com/arkeian/its-now#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
