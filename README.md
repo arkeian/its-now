@@ -59,5 +59,7 @@ Di lingkungan ITS, persebaran informasi seputar ITS masih belum efisien dikarena
 <p align="justify">
 	&emsp;Terlebih dari itu, setiap kali mahasiswa ingin membuka suatu diskusi, maka mahasiswa tersebut dapat membuat postingan baru. Di situ, mahasiswa lain dapat secara anonim memilih untuk mendukung (<i>upvote</i>) atau tidak mendukung (<i>downvote</i>) postingan tersebut. Semakin banyak dukungan, semakin tinggi posisi postingan tersebut di halaman website.
 	<br><br>
-	&emsp;Tujuannya adalah agar postingan yang paling relevan, bermanfaat, dan disukai banyak mahasiswa dapat muncul di bagian teratas, serta memudahkan mahasiswa lain untuk menemukan informasi tersebut. Selain itu, fitur ini berguna untuk menghindari postingan yang sepatutnya untuk dibagikan, karena semakin banyaknya <i>downvote</i> dari mahasiswa lain dapat menyebabkan postingan tersebut dihapus.
+	&emsp;Tujuannya adalah agar postingan yang paling relevan, bermanfaat, dan disukai banyak mahasiswa dapat muncul di bagian teratas, serta memudahkan mahasiswa lain untuk menemukan informasi tersebut. Selain itu, fitur ini berguna untuk menghindari postingan yang sepatutnya tidak untuk dibagikan, karena semakin banyaknya <i>downvote</i> dari mahasiswa lain dapat menyebabkan postingan tersebut dihapus.
+	<br><br>
+	&emsp;Harapannya dengan pendekatan <i>discussion thread</i> ini diskusi terkait suatu hal bisa menjadi lebih <i>non-intrusive</i> atau tidak mengganggu mahasiswa lain yang mungkin kurang tertarik dengan topik yang dibahas ataupun lagi tidak ingin mendapatkan notifikasi tidak penting yang umumnya didapatkan saat adanya diskusi melalui <i>platform</i> sosial lainnya seperti Whatsapp.
 </p>
