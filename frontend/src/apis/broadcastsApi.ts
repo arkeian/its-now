@@ -8,6 +8,14 @@ export const getBroadcastsAPI = async () => {
     return res.json();
 };
 
+export const getBroadcastAPI = async (id: string) => {
+    const token = localStorage.getItem("token");
+    const res = await fetch(`${BASE}/broadcasts/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+    return res.json();
+};
+
 export const createBroadcastAPI = async (data: any) => {
     const token = localStorage.getItem("token");
     const res = await fetch(`${BASE}/broadcasts`, {
@@ -18,7 +26,7 @@ export const createBroadcastAPI = async (data: any) => {
     return res.json();
 };
 
-export const voteBroadcastAPI = async (id: string, type: "up" | "down") => {
+export const voteBroadcastAPI = async (id: string, type: "up" | "down" | undefined) => {
     const token = localStorage.getItem("token");
     const res = await fetch(`${BASE}/broadcasts/${id}/vote`, {
         method: "POST",

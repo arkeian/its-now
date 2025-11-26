@@ -31,7 +31,7 @@ export const createThreadAPI = async (thread: any) => {
     return res.json();
 };
 
-export const voteThreadAPI = async (id: string, type: "up" | "down") => {
+export const voteThreadAPI = async (id: string, type: "up" | "down" | undefined) => {
     const token = localStorage.getItem("token");
     const res = await fetch(`${BASE}/threads/${id}/vote`, {
         method: "POST",

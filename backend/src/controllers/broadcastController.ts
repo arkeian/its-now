@@ -7,6 +7,11 @@ export const getBroadcasts = async (_: Request, res: Response) => {
     res.json(broadcasts);
 };
 
+export const getBroadcast = async (req: Request, res: Response) => {
+    const broadcast = await Broadcast.findById(req.params.id).populate("user");
+    return broadcast ? res.json(broadcast) : res.status(404).json({ msg: "Not found" });
+};
+
 export const createBroadcast = async (req: Request, res: Response) => {
     const { title, body, image, video, tags } = req.body;
 
@@ -19,7 +24,8 @@ export const createBroadcast = async (req: Request, res: Response) => {
         user: (req as any).user
     });
 
-    res.json(post);
+    const populated = await Broadcast.findById(post._id).populate("user");
+    res.json(populated);
 };
 
 export const voteBroadcast = async (req: Request, res: Response) => {
@@ -36,7 +42,9 @@ export const voteBroadcast = async (req: Request, res: Response) => {
     if (type === "down") post.downvotes.push(user);
 
     await post.save();
-    res.json(post);
+
+    const populated = await Broadcast.findById(post._id).populate("user");
+    res.json(populated);
 };
 
 export const updateBroadcast = async (req: Request, res: Response) => {

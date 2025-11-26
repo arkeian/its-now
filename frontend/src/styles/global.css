@@ -26,6 +26,8 @@ body[data-theme="light"] {
     --shadow: rgba(0, 0, 0, 0.08);
     --skeleton-base: #e5e7eb;
     --skeleton-highlight: rgba(255, 255, 255, 0.7);
+    --reply-btn-border: #9ca3af;
+    --reply-btn-text: #374151;
 }
 
 body[data-theme="dark"] {
@@ -37,6 +39,8 @@ body[data-theme="dark"] {
     --shadow: rgba(0, 0, 0, 0.5);
     --skeleton-base: #111827;
     --skeleton-highlight: rgba(148, 163, 184, 0.32);
+    --reply-btn-border: #e5e7eb;
+    --reply-btn-text: #e5e7eb;
 }
 
 /* Navbar theming */
@@ -335,6 +339,11 @@ body[data-theme="dark"] {
     border-color: var(--border);
 }
 
+.comment-reply-btn.btn-outline-secondary {
+    border-color: var(--reply-btn-border);
+    color: var(--reply-btn-text);
+}
+
 .thread-card-layout {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
@@ -409,6 +418,38 @@ body[data-theme="dark"] {
     margin-left: 12px;
 }
 
+/* Comment thread line (Reddit-style) */
+.comment-thread-line {
+    position: relative;
+    width: 18px;
+    min-height: 100%;
+    cursor: pointer;
+}
+
+.comment-thread-line::before {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    bottom: -0.25rem;
+    left: 50%;
+    width: 2px;
+    border-radius: 999px;
+    background-color: var(--border);
+}
+
+.comment-thread-line::after {
+    content: "";
+    position: absolute;
+    top: 0.75rem;
+    left: 50%;
+    width: 14px;
+    height: 10px;
+    border-left: 2px solid var(--border);
+    border-bottom: 2px solid var(--border);
+    border-radius: 0 0 0 999px;
+    transform: translateX(0);
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
 
@@ -457,7 +498,8 @@ body[data-theme="dark"] {
 
 .rte-container {
     position: relative;
-    min-height: 120px;
+    min-height: 80px;
+    padding: 0.5rem 0.75rem;
 }
 
 .rte-placeholder {
@@ -469,8 +511,9 @@ body[data-theme="dark"] {
 }
 
 .rte-editor {
-    min-height: 120px;
+    min-height: 80px;
     outline: none;
+    padding: 0;
 }
 
 .rte-editor p {

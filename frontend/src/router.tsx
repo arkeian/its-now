@@ -6,6 +6,7 @@ import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import ThreadPage from "./pages/Thread";
 import BroadcastPage from "./pages/Broadcast";
+import BroadcastDetailPage from "./pages/BroadcastDetail";
 import CreateThreadPage from "./pages/CreateThread";
 import CreateBroadcastPage from "./pages/CreateBroadcast";
 import BookmarkPage from "./pages/Bookmark";
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
             { path: "/threads", element: <HomePage /> },
             { path: "/thread/:id", element: <ThreadPage /> },
             { path: "/broadcasts", element: <BroadcastPage /> },
+            { path: "/broadcast/:id", element: <BroadcastDetailPage /> },
             { path: "/create-thread", element: <CreateThreadPage /> },
             { path: "/create-broadcast", element: <CreateBroadcastPage /> },
             { path: "/bookmarks", element: <BookmarkPage /> },

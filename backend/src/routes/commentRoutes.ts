@@ -10,8 +10,13 @@ import {
 
 const router = express.Router();
 
-router.get("/:threadId", protect, getComments);
-router.post("/:threadId", protect, createComment);
+// Thread comments
+router.get("/threads/:threadId", protect, getComments);
+router.post("/threads/:threadId", protect, createComment);
+
+// Broadcast comments
+router.get("/broadcasts/:broadcastId", protect, getComments);
+router.post("/broadcasts/:broadcastId", protect, createComment);
 router.post("/vote/:id", protect, voteComment);
 router.put("/:id", protect, updateComment);
 router.delete("/:id", protect, deleteComment);

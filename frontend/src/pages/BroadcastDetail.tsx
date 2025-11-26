@@ -1,40 +1,44 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useRequireLogin } from "../hooks/useRequireLogin";
-import { getThreadAPI, voteThreadAPI } from "../apis/threadsApi";
-import { getCommentsAPI, createCommentAPI, voteCommentAPI } from "../apis/commentsApi";
+import { voteBroadcastAPI, getBroadcastAPI } from "../apis/broadcastsApi";
+import { getBroadcastCommentsAPI, createBroadcastCommentAPI, voteCommentAPI } from "../apis/commentsApi";
 import VoteButtons from "../components/VoteButtons/VoteButtons";
 import Comment from "../components/Comment/Comment";
 import UserIcon from "../components/UserIcon/UserIcon";
 import { useAutoSave } from "../hooks/useAutoSave";
 import CommentSkeleton from "../components/Skeleton/CommentSkeleton";
 import RichTextEditor from "../components/RichTextEditor/RichTextEditor";
-import LinkPreview from "../components/Preview/LinkPreview";
 import VideoEmbed from "../components/Upload/VideoEmbed";
 import { extractLinks } from "../utils/linkPreview";
+import LinkPreview from "../components/Preview/LinkPreview";
 
-const ThreadPage = () => {
+const BroadcastDetailPage = () => {
     useRequireLogin();
     const { id } = useParams();
 
-    const [thread, setThread] = useState<any>(null);
+    const [broadcast, setBroadcast] = useState<any | null>(null);
+    const [author, setAuthor] = useState<any | null>(null);
     const [comments, setComments] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
     const [editor, setEditor] = useState("");
     const [saving, setSaving] = useState(false);
 
-    const draft = useAutoSave(`thread-comment-${id}`);
+    const draft = useAutoSave(`broadcast-comment-${id}`);
 
     useEffect(() => {
         setEditor(draft.loadDraft());
     }, []);
 
     const load = async () => {
-        const t = await getThreadAPI(id!);
-        const c = await getCommentsAPI(id!);
-        setThread(t);
-        setComments(c);
+        if (!id) return;
+        const b = await getBroadcastAPI(id);
+        const c = await getBroadcastCommentsAPI(id);
+        setBroadcast(b);
+        setAuthor(b.user || null);
+        // Ensure each comment knows its parent broadcast for reply API
+        setComments(c.map((cm: any) => ({ ...cm, broadcast: id })));
         setLoading(false);
     };
 
@@ -42,20 +46,39 @@ const ThreadPage = () => {
         load();
     }, [id]);
 
-    const voteThread = async (id: string, type?: "up" | "down") => {
-        const updated = await voteThreadAPI(id, type);
-        setThread(updated);
+    const voteBroadcast = async (bid: string, type?: "up" | "down") => {
+        const updated = await voteBroadcastAPI(bid, type);
+        // Keep author stable; only update votes and other fields
+        setBroadcast((prev: any) => {
+            if (!prev) return updated;
+            return {
+                ...prev,
+                ...updated,
+                user: author || prev.user,
+            };
+        });
     };
 
     const voteComment = async (cid: string, type?: "up" | "down") => {
         const updated = await voteCommentAPI(cid, type);
-        setComments((prev) => prev.map((c) => (c._id === updated._id ? updated : c)));
+        setComments((prev) =>
+            prev.map((c) =>
+                c._id === updated._id
+                    ? {
+                        ...c,
+                        ...updated,
+                        // Ensure we never lose the user object that
+                        // drives the username/avatar display
+                        user: c.user || updated.user || null,
+                    }
+                    : c,
+            ),
+        );
     };
 
     const submit = async () => {
-        if (!editor.trim()) return;
-
-        const res = await createCommentAPI(id!, { body: editor });
+        if (!editor.trim() || !id) return;
+        const res = await createBroadcastCommentAPI(id, { body: editor });
         setComments((prev) => [...prev, res]);
         setEditor("");
         draft.clearDraft();
@@ -70,9 +93,9 @@ const ThreadPage = () => {
         return () => clearInterval(interval);
     }, [editor]);
 
-    if (loading) return null;
+    if (loading || !broadcast) return null;
 
-    const urls = extractLinks(thread.body);
+    const urls = extractLinks(broadcast.body);
 
     const buildCommentTree = (items: any[]) => {
         const byId: Record<string, any> = {};
@@ -97,9 +120,6 @@ const ThreadPage = () => {
 
     const handleCommentDeleted = (deletedId: string) => {
         setComments((prev) => prev.filter((c) => c._id !== deletedId && c.parent !== deletedId));
-        // We don't know the exact subtree size on the client; let backend's
-        // commentsCount be the source of truth and rely on a future refetch
-        // if needed, so we no longer adjust commentsCount here.
     };
 
     const handleReplyAdded = (newComment: any) => {
@@ -120,27 +140,22 @@ const ThreadPage = () => {
     return (
         <div className="container mt-4">
             <div className="d-flex align-items-center gap-2 mb-2 small thread-meta">
-                <UserIcon user={thread.user} small />
-                <Link
-                    to={`/user/${thread.user._id}`}
-                    className="fw-semibold text-decoration-none thread-username-link"
-                >
-                    {thread.user.username}
-                </Link>
-                <span className="thread-date">· {new Date(thread.createdAt).toLocaleDateString()}</span>
-                {thread.tags?.length > 0 && (
-                    <div className="d-flex gap-1 flex-wrap ms-2">
-                        {thread.tags.map((tag: string) => (
-                            <span key={tag} className="badge bg-primary bg-opacity-75">
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
+                {author && (
+                    <>
+                        <UserIcon user={author} small />
+                        <Link
+                            to={`/user/${author._id}`}
+                            className="fw-semibold text-decoration-none thread-username-link"
+                        >
+                            {author.username}
+                        </Link>
+                    </>
                 )}
+                <span className="thread-date">· {new Date(broadcast.createdAt).toLocaleDateString()}</span>
             </div>
 
-            <h3 className="fw-bold mb-3">{thread.title}</h3>
-            <div dangerouslySetInnerHTML={{ __html: thread.body }} className="mb-3" />
+            <h3 className="fw-bold mb-3">{broadcast.title}</h3>
+            <div dangerouslySetInnerHTML={{ __html: broadcast.body }} className="mb-3" />
 
             {urls.length > 0 && (
                 <div>
@@ -150,19 +165,19 @@ const ThreadPage = () => {
                 </div>
             )}
 
-            {thread.image && (
+            {broadcast.image && (
                 <div className="media-frame mb-3">
-                    <img src={thread.image} alt="" className="media-img" />
+                    <img src={broadcast.image} alt="" className="media-img" />
                 </div>
             )}
 
-            {thread.video && <VideoEmbed url={thread.video} />}
+            {broadcast.video && <VideoEmbed url={broadcast.video} />}
 
             <VoteButtons
-                id={thread._id}
-                upvotes={thread.upvotes}
-                downvotes={thread.downvotes}
-                onVote={voteThread}
+                id={broadcast._id}
+                upvotes={broadcast.upvotes}
+                downvotes={broadcast.downvotes}
+                onVote={voteBroadcast}
             />
 
             <hr />
@@ -197,8 +212,9 @@ const ThreadPage = () => {
                 </>
             )}
             {commentTree.map((c) => renderComment(c, 0))}
+
         </div>
     );
 };
 
-export default ThreadPage;
+export default BroadcastDetailPage;

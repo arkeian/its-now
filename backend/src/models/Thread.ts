@@ -9,6 +9,7 @@ const threadSchema = new mongoose.Schema(
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
         upvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         downvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+        commentsCount: { type: Number, default: 0 },
         tags: [
             {
                 type: String,

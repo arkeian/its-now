@@ -39,29 +39,33 @@ const RichTextEditor = ({ value, onChange, placeholder }: Props) => {
                     type="button"
                     className={`btn btn-sm me-1 ${editor.isActive("bold") ? "btn-secondary" : "btn-outline-secondary"}`}
                     onClick={() => editor.chain().focus().toggleBold().run()}
+                    aria-label="Bold"
                 >
-                    B
+                    <span style={{ fontWeight: 700 }}>B</span>
                 </button>
                 <button
                     type="button"
                     className={`btn btn-sm me-1 ${editor.isActive("italic") ? "btn-secondary" : "btn-outline-secondary"}`}
                     onClick={() => editor.chain().focus().toggleItalic().run()}
+                    aria-label="Italic"
                 >
-                    I
+                    <span style={{ fontStyle: "italic" }}>I</span>
                 </button>
                 <button
                     type="button"
                     className={`btn btn-sm me-1 ${editor.isActive("bulletList") ? "btn-secondary" : "btn-outline-secondary"}`}
                     onClick={() => editor.chain().focus().toggleBulletList().run()}
+                    aria-label="Bulleted list"
                 >
-                    • List
+                    &#8226;
                 </button>
                 <button
                     type="button"
                     className={`btn btn-sm me-1 ${editor.isActive("orderedList") ? "btn-secondary" : "btn-outline-secondary"}`}
                     onClick={() => editor.chain().focus().toggleOrderedList().run()}
+                    aria-label="Numbered list"
                 >
-                    1. List
+                    1.
                 </button>
             </div>
             <div className="rte-container">

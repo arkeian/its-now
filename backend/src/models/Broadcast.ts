@@ -7,6 +7,7 @@ const broadcastSchema = new mongoose.Schema(
         image: { type: String },
         video: { type: String },
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+        commentsCount: { type: Number, default: 0 },
         tags: [
             {
                 type: String,

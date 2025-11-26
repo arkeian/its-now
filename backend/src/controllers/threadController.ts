@@ -45,7 +45,8 @@ export const createThread = async (req: Request, res: Response) => {
         user: (req as any).user
     });
 
-    res.json(thread);
+    const populated = await Thread.findById(thread._id).populate("user");
+    res.json(populated);
 };
 
 export const voteThread = async (req: Request, res: Response) => {

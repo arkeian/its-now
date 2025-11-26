@@ -18,6 +18,10 @@ const Navbar = () => {
         location.pathname === "/register" ||
         location.pathname === "/";
 
+    const onBroadcastPage =
+        location.pathname.startsWith("/broadcasts") ||
+        location.pathname.startsWith("/broadcast/");
+
     return (
         <nav className="navbar navbar-expand-lg border-bottom px-3 sticky-top app-navbar">
             <Link className="navbar-brand fw-bold" to="/">
@@ -28,10 +32,17 @@ const Navbar = () => {
 
                 {token && !isAuthPage ? (
                     <>
-                        <Link to="/create-thread" className="btn btn-primary d-none d-md-inline-flex align-items-center gap-1">
-                            <FiPlus />
-                            <span className="d-none d-lg-inline">New thread</span>
-                        </Link>
+                        {onBroadcastPage ? (
+                            <Link to="/create-broadcast" className="btn btn-primary d-none d-md-inline-flex align-items-center gap-1">
+                                <FiPlus />
+                                <span className="d-none d-lg-inline">New broadcast</span>
+                            </Link>
+                        ) : (
+                            <Link to="/create-thread" className="btn btn-primary d-none d-md-inline-flex align-items-center gap-1">
+                                <FiPlus />
+                                <span className="d-none d-lg-inline">New thread</span>
+                            </Link>
+                        )}
 
                         <Link to="/bookmarks" className="btn btn-outline-secondary">
                             Bookmarks

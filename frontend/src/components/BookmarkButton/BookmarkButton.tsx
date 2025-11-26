@@ -3,7 +3,11 @@ import { FiBookmark, FiBookmark as FillBookmark } from "react-icons/fi";
 import { toggleBookmarkAPI } from "../../apis/usersApi";
 import { BookmarkContext } from "../../contexts/BookmarkContext";
 
-const BookmarkButton = ({ id }: { id: string }) => {
+interface Props {
+    id: string;
+}
+
+const BookmarkButton = ({ id }: Props) => {
     const { bookmarks, setBookmarks } = useContext(BookmarkContext);
     const [active, setActive] = useState(bookmarks.includes(id));
 

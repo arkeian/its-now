@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiMessageCircle } from "react-icons/fi";
 import VoteButtons from "../VoteButtons/VoteButtons";
@@ -8,18 +8,19 @@ import Modal from "../Modal/Modal";
 import { deleteThreadAPI } from "../../apis/threadsApi";
 import { useToast } from "../Toast/useToast";
 import { buildThreadPreview } from "../../utils/threadPreview";
+import { AuthContext } from "../../contexts/AuthContext";
 
 interface Props {
     thread: any;
-    onVote: (id: string, type: "up" | "down") => void;
+    onVote: (id: string, type?: "up" | "down") => void;
 }
 
 const ThreadCard = ({ thread, onVote }: Props) => {
     const { pushToast } = useToast();
+    const { user } = useContext(AuthContext);
 
     const [confirmDelete, setConfirmDelete] = useState(false);
-    // owner check currently unused; kept for future moderation features
-    const commentCount = thread.commentsCount ?? thread.comments?.length ?? 0;
+    const commentCount = thread.commentsCount ?? 0;
 
     const preview = buildThreadPreview(thread.body || "");
 
@@ -65,6 +66,15 @@ const ThreadCard = ({ thread, onVote }: Props) => {
                     <span>{commentCount}</span>
                 </button>
                 <BookmarkButton id={thread._id} />
+                {user && thread.user && (user.id === thread.user._id || user._id === thread.user._id) && (
+                    <button
+                        type="button"
+                        className="btn btn-sm btn-outline-danger ms-auto"
+                        onClick={() => setConfirmDelete(true)}
+                    >
+                        Delete
+                    </button>
+                )}
             </div>
             <Modal
                 isOpen={confirmDelete}

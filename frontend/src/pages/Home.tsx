@@ -93,7 +93,7 @@ const HomePage = () => {
         setTimeout(() => (scrollLock.current = false), 300);
     }, [page]);
 
-    const vote = async (id: string, type: "up" | "down") => {
+    const vote = async (id: string, type?: "up" | "down") => {
         const updated = await voteThreadAPI(id, type);
         setThreads((prev) => prev.map((t) => (t._id === updated._id ? updated : t)));
     };
