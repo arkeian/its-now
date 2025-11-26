@@ -21,12 +21,13 @@ Dibuat oleh:
 - [Latar Belakang Masalah](#latar-belakang-masalah)
 - [Solusi yang Ditawarkan](#solusi-yang-ditawarkan)
 - [Fitur Utama](#fitur-utama)
-- [Fitur Tambahan / Quality of Life](#fitur-tambahan--quality-of-life)
+- [Fitur Tambahan atau Quality of Life (QoL)](#fitur-tambahan-atau-quality-of-life-qol)
 - [Struktur Project](#struktur-project)
 - [Tech Stack](#tech-stack)
  - [Setup dan Instalasi](#setup-dan-instalasi)
  - [API Endpoints](#api-endpoints)
  - [Panduan Penggunaan Website](#panduan-penggunaan-website)
+ - [Penutup](#penutup)
 
 ## Deskripsi Singkat
 
