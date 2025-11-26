@@ -31,12 +31,15 @@ export const updateUserAPI = async (data: any) => {
     return res.json();
 };
 
-export const toggleBookmarkAPI = async (threadId: string) => {
+export const toggleBookmarkAPI = async (itemId: string) => {
     const token = localStorage.getItem("token");
     const res = await fetch(`${BASE}/users/bookmark`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ threadId })
+        body: JSON.stringify({ itemId })
     });
+    if (!res.ok) {
+        throw new Error(`Failed to toggle bookmark: ${res.status}`);
+    }
     return res.json();
 };

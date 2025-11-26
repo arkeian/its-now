@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
         description: { type: String, default: "" },
         image: { type: String, default: "" },
         badge: { type: String, default: "" },
-        bookmarks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Thread" }]
+        bookmarks: [{ type: mongoose.Schema.Types.ObjectId }]
     },
     { timestamps: true }
 );

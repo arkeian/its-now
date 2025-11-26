@@ -6,6 +6,11 @@ import { isNonEmptyString, isValidEmail, isStrongPassword } from "../utils/input
 
 export const getSelf = async (req: Request, res: Response) => {
     const user = await User.findById((req as any).user).select("-password");
+    if (user && user.bookmarks) {
+        const userObj = user.toObject();
+        userObj.bookmarks = userObj.bookmarks.map((id: any) => id.toString());
+        return res.json(userObj);
+    }
     return res.json(user);
 };
 
@@ -68,20 +73,29 @@ export const updateProfile = async (req: Request, res: Response) => {
 
 export const toggleBookmark = async (req: Request, res: Response) => {
     const userId = (req as any).user;
-    const { threadId } = req.body;
+    const { itemId, threadId } = req.body;
+    const bookmarkId = itemId || threadId;
+
+    if (!bookmarkId) {
+        return res.status(400).json({ msg: "itemId or threadId is required" });
+    }
 
     const user = await User.findById(userId);
 
     if (!user) return res.status(404).json({ msg: "User not found" });
 
-    const index = user.bookmarks.indexOf(threadId);
+    const bookmarkIdStr = bookmarkId.toString();
+    const index = user.bookmarks.findIndex((id: any) => id.toString() === bookmarkIdStr);
 
-    if (index === -1) user.bookmarks.push(threadId);
-    else user.bookmarks.splice(index, 1);
+    if (index === -1) {
+        user.bookmarks.push(bookmarkId);
+    } else {
+        user.bookmarks.splice(index, 1);
+    }
 
     await user.save();
 
-    res.json({ bookmarks: user.bookmarks });
+    res.json({ bookmarks: user.bookmarks.map((id: any) => id.toString()) });
 };
 
 export const deleteSelf = async (req: Request, res: Response) => {

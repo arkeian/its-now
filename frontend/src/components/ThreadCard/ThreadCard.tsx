@@ -24,6 +24,10 @@ const ThreadCard = ({ thread, onVote }: Props) => {
 
     const preview = buildThreadPreview(thread.body || "");
 
+    if (!thread.user) {
+        return null;
+    }
+
     return (
         <article className="card p-3 mb-3 shadow-sm border-0 thread-card">
             <div className="thread-card-main position-relative">
