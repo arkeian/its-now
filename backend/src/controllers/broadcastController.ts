@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Broadcast from "../models/Broadcast";
-import { sanitize } from "../utils/inputSanitation";
+import { sanitize } from "../utils/htmlSanitation";
 
 export const getBroadcasts = async (_: Request, res: Response) => {
     const broadcasts = await Broadcast.find().populate("user");

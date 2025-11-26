@@ -5,7 +5,7 @@ import { useAutoSave } from "../../hooks/useAutoSave";
 import UserIcon from "../UserIcon/UserIcon";
 import Modal from "../Modal/Modal";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useToast } from "../Toast/useToast";
+import { useToast } from "../Toast/Toast";
 import RichTextEditor from "../RichTextEditor/RichTextEditor";
 
 interface Props {

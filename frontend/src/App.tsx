@@ -4,7 +4,7 @@ import { router } from "./router";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { BookmarkProvider } from "./contexts/BookmarkContext";
-import { ToastProvider } from "./components/Toast/useToast";
+import { ToastProvider } from "./components/Toast/Toast";
 
 const App = () => {
     return (

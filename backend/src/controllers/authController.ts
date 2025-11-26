@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import User from "../models/User";
 import { hashPassword, comparePassword } from "../utils/passwordHashing";
 import { signToken } from "../configs/jwt";
-import { isNonEmptyString, isValidEmail, isStrongPassword } from "../utils/validators";
+import { isNonEmptyString, isValidEmail, isStrongPassword } from "../utils/inputValidators";
 
 export const register = async (req: Request, res: Response) => {
     try {

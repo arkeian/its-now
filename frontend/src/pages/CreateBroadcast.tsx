@@ -3,7 +3,7 @@ import { useRequireLogin } from "../hooks/useRequireLogin";
 import { createBroadcastAPI } from "../apis/broadcastsApi";
 import ImageUpload from "../components/Upload/ImageUpload";
 import { useAutoSave } from "../hooks/useAutoSave";
-import { useToast } from "../components/Toast/useToast";
+import { useToast } from "../components/Toast/Toast";
 import RichTextEditor from "../components/RichTextEditor/RichTextEditor";
 
 const CreateBroadcastPage = () => {

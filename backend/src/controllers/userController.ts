@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import User from "../models/User";
 import { hashPassword } from "../utils/passwordHashing";
-import { isNonEmptyString, isValidEmail, isStrongPassword } from "../utils/validators";
+import { isNonEmptyString, isValidEmail, isStrongPassword } from "../utils/inputValidators";
 
 export const getSelf = async (req: Request, res: Response) => {
     const user = await User.findById((req as any).user).select("-password");

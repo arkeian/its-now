@@ -4,7 +4,7 @@ import Loader from "../components/Loader/Loader";
 import Modal from "../components/Modal/Modal";
 import { AuthContext } from "../contexts/AuthContext";
 import { deleteSelfAPI } from "../apis/usersApi";
-import { useToast } from "../components/Toast/useToast";
+import { useToast } from "../components/Toast/Toast";
 
 const UserProfilePage = () => {
     const { id } = useParams();

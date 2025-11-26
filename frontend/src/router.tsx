@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import HomePage from "./pages/Home";
+import HomePage from "./pages/ThreadSummary";
 import DashboardPage from "./pages/Dashboard";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
-import ThreadPage from "./pages/Thread";
-import BroadcastPage from "./pages/Broadcast";
+import ThreadPage from "./pages/ThreadDetail";
+import BroadcastPage from "./pages/BroadcastSummary";
 import BroadcastDetailPage from "./pages/BroadcastDetail";
 import CreateThreadPage from "./pages/CreateThread";
 import CreateBroadcastPage from "./pages/CreateBroadcast";

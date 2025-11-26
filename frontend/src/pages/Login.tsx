@@ -5,7 +5,7 @@ import PasswordInput from "../components/Form/PasswordInput";
 import { loginAPI } from "../apis/authApi";
 import Loader from "../components/Loader/Loader";
 import { AuthContext } from "../contexts/AuthContext";
-import { useToast } from "../components/Toast/useToast";
+import { useToast } from "../components/Toast/Toast";
 import { isValidEmail } from "../utils/validators";
 
 const LoginPage = () => {

@@ -6,7 +6,7 @@ import BookmarkButton from "../BookmarkButton/BookmarkButton";
 import UserIcon from "../UserIcon/UserIcon";
 import Modal from "../Modal/Modal";
 import { deleteThreadAPI } from "../../apis/threadsApi";
-import { useToast } from "../Toast/useToast";
+import { useToast } from "../Toast/Toast";
 import { buildThreadPreview } from "../../utils/threadPreview";
 import { AuthContext } from "../../contexts/AuthContext";
 

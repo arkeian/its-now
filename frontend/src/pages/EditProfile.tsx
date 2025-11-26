@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getUserAPI, updateUserAPI } from "../apis/usersApi";
 import ImageUpload from "../components/Upload/ImageUpload";
-import { useToast } from "../components/Toast/useToast";
+import { useToast } from "../components/Toast/Toast";
 import Loader from "../components/Loader/Loader";
 import Modal from "../components/Modal/Modal";
 import { isNonEmptyString, isValidEmail } from "../utils/validators";

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Comment from "../models/Comment";
 import Thread from "../models/Thread";
 import Broadcast from "../models/Broadcast";
-import { sanitize } from "../utils/inputSanitation";
+import { sanitize } from "../utils/htmlSanitation";
 
 export const getComments = async (req: Request, res: Response) => {
     const { threadId, broadcastId } = req.params as { threadId?: string; broadcastId?: string };

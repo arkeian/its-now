@@ -4,7 +4,7 @@ import TextInput from "../components/Form/TextInput";
 import PasswordInput from "../components/Form/PasswordInput";
 import { registerAPI } from "../apis/authApi";
 import Loader from "../components/Loader/Loader";
-import { useToast } from "../components/Toast/useToast";
+import { useToast } from "../components/Toast/Toast";
 import { isValidEmail } from "../utils/validators";
 
 const RegisterPage = () => {

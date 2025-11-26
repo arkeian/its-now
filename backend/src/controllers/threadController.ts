@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Thread from "../models/Thread";
-import { sanitize } from "../utils/inputSanitation";
+import { sanitize } from "../utils/htmlSanitation";
 
 export const getThreads = async (req: Request, res: Response) => {
     const { sort = "best", tag, search } = req.query;
