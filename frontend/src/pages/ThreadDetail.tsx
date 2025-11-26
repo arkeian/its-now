@@ -12,6 +12,7 @@ import RichTextEditor from "../components/RichTextEditor/RichTextEditor";
 import LinkPreview from "../components/Preview/LinkPreview";
 import VideoEmbed from "../components/Upload/VideoUpload";
 import { extractLinks } from "../utils/linkPreview";
+import BackButton from "../components/BackButton/BackButton";
 
 const ThreadPage = () => {
     useRequireLogin();
@@ -119,6 +120,10 @@ const ThreadPage = () => {
 
     return (
         <div className="container mt-4">
+            <div className="d-flex align-items-center gap-2 mb-3">
+                <BackButton />
+                <h3 className="fw-bold mb-0">Thread Detail</h3>
+            </div>
             <div className="d-flex align-items-center gap-2 mb-2 small thread-meta">
                 <UserIcon user={thread.user} small />
                 <Link

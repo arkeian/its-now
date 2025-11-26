@@ -5,6 +5,7 @@ import ImageUpload from "../components/Upload/ImageUpload";
 import { useAutoSave } from "../hooks/useAutoSave";
 import { useToast } from "../components/Toast/Toast";
 import RichTextEditor from "../components/RichTextEditor/RichTextEditor";
+import BackButton from "../components/BackButton/BackButton";
 
 const CreateBroadcastPage = () => {
     useRequireLogin();
@@ -55,46 +56,50 @@ const CreateBroadcastPage = () => {
     };
 
     return (
-        <div className="container mt-4 col-md-8">
+        <>
+            <BackButton />
+            <div className="container mt-4 col-md-8">
 
-            <h3 className="fw-bold mb-3">Create Broadcast</h3>
+                <h3 className="fw-bold mb-3">Create Broadcast</h3>
 
-            <label className="form-label fw-semibold">Title</label>
-            <input
-                className="form-control mb-3"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-            />
-
-            <label className="form-label fw-semibold">Body</label>
-            <div className="border rounded p-2">
-                <RichTextEditor
-                    value={body}
-                    onChange={setBody}
-                    placeholder="Write your announcement..."
+                <label className="form-label fw-semibold">Title</label>
+                <input
+                    className="form-control mb-3"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                 />
-                {saving && <small className="text-muted">Draft saved…</small>}
+
+                <label className="form-label fw-semibold">Body</label>
+                <div className="border rounded p-2">
+                    <RichTextEditor
+                        value={body}
+                        onChange={setBody}
+                        placeholder="Write your announcement..."
+                    />
+                    {saving && <small className="text-muted">Draft saved…</small>}
+                </div>
+
+                <ImageUpload label="Optional Image" onUpload={setImage} />
+
+                {image && (
+                    <img src={image} className="img-fluid rounded mt-3" alt="preview" />
+                )}
+
+                <label className="form-label fw-semibold mt-3">Optional Video URL (YouTube, etc.)</label>
+                <input
+                    className="form-control mb-1"
+                    placeholder="https://www.youtube.com/watch?v=..."
+                    value={video}
+                    onChange={(e) => setVideo(e.target.value)}
+                />
+
+                <button className="btn btn-primary w-100 mt-4" onClick={submit}>
+                    Post Broadcast
+                </button>
+
+
             </div>
-
-            <ImageUpload label="Optional Image" onUpload={setImage} />
-
-            {image && (
-                <img src={image} className="img-fluid rounded mt-3" alt="preview" />
-            )}
-
-            <label className="form-label fw-semibold mt-3">Optional Video URL (YouTube, etc.)</label>
-            <input
-                className="form-control mb-1"
-                placeholder="https://www.youtube.com/watch?v=..."
-                value={video}
-                onChange={(e) => setVideo(e.target.value)}
-            />
-
-            <button className="btn btn-primary w-100 mt-4" onClick={submit}>
-                Post Broadcast
-            </button>
-
-        </div>
+        </>
     );
 };
 

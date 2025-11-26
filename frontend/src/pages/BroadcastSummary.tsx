@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import Modal from "../components/Modal/Modal";
 import VideoEmbed from "../components/Upload/VideoUpload";
 import { useToast } from "../components/Toast/Toast";
+import BackButton from "../components/BackButton/BackButton";
 
 const BroadcastPage = () => {
     useRequireLogin();
@@ -39,7 +40,10 @@ const BroadcastPage = () => {
 
     return (
         <div className="container mt-4">
-            <h3 className="fw-bold mb-3">Broadcast Announcements</h3>
+            <div className="d-flex align-items-center gap-2 mb-3">
+                <BackButton />
+                <h3 className="fw-bold mb-0">Broadcast Announcements</h3>
+            </div>
 
             {loading ? (
                 [...Array(5)].map((_, idx) => <Skeleton key={idx} height={150} />)

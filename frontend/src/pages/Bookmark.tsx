@@ -10,6 +10,7 @@ import UserIcon from "../components/UserIcon/UserIcon";
 import { FiMessageCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import VideoEmbed from "../components/Upload/VideoUpload";
+import BackButton from "../components/BackButton/BackButton";
 
 const BookmarkPage = () => {
     const { bookmarks } = useContext(BookmarkContext);
@@ -99,7 +100,10 @@ const BookmarkPage = () => {
 
     return (
         <div className="container mt-4">
-            <h3 className="fw-bold mb-3">Bookmarks</h3>
+            <div className="d-flex align-items-center gap-2 mb-3">
+                <BackButton />
+                <h3 className="fw-bold mb-0">Bookmarks</h3>
+            </div>
 
             {loading ? (
                 [...Array(4)].map((_, i) => <Skeleton key={i} height={130} />)

@@ -669,6 +669,26 @@ body[data-theme="dark"] {
     box-shadow: 0 12px 30px var(--shadow);
 }
 
+/* Back button - simple, consistent styling */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background-color: var(--link);
+    color: #fff;
+    border: none;
+    padding: 0;
+    margin-right: 8px;
+}
+
+.back-button:hover {
+    background-color: #0b5ed7;
+    /* darkened primary similar to btn-primary hover */
+}
+
 @keyframes toast-slide-in {
     0% {
         opacity: 0;
