@@ -36,3 +36,33 @@ export const voteComment = async (req: Request, res: Response) => {
     await com.save();
     res.json(com);
 };
+
+export const updateComment = async (req: Request, res: Response) => {
+    const userId = (req as any).user;
+    const comment = await Comment.findById(req.params.id);
+
+    if (!comment) return res.status(404).json({ msg: "Not found" });
+    if (comment.user.toString() !== userId) {
+        return res.status(403).json({ msg: "Forbidden" });
+    }
+
+    const { body } = req.body;
+    if (body !== undefined) comment.body = sanitize(body);
+
+    await comment.save();
+    const populated = await Comment.findById(comment._id).populate("user");
+    return res.json(populated);
+};
+
+export const deleteComment = async (req: Request, res: Response) => {
+    const userId = (req as any).user;
+    const comment = await Comment.findById(req.params.id);
+
+    if (!comment) return res.status(404).json({ msg: "Not found" });
+    if (comment.user.toString() !== userId) {
+        return res.status(403).json({ msg: "Forbidden" });
+    }
+
+    await comment.deleteOne();
+    return res.json({ msg: "Comment deleted" });
+};

@@ -5,6 +5,7 @@ const broadcastSchema = new mongoose.Schema(
         title: { type: String, required: true },
         body: { type: String, required: true },
         image: { type: String },
+        video: { type: String },
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
         tags: [
             {

@@ -34,12 +34,13 @@ export const getThread = async (req: Request, res: Response) => {
 };
 
 export const createThread = async (req: Request, res: Response) => {
-    const { title, body, image, tags } = req.body;
+    const { title, body, image, video, tags } = req.body;
 
     const thread = await Thread.create({
         title: sanitize(title),
         body: sanitize(body),
         image,
+        video,
         tags,
         user: (req as any).user
     });
@@ -64,4 +65,39 @@ export const voteThread = async (req: Request, res: Response) => {
     await thread.save();
 
     res.json(thread);
+};
+
+export const updateThread = async (req: Request, res: Response) => {
+    const userId = (req as any).user;
+    const thread = await Thread.findById(req.params.id);
+
+    if (!thread) return res.status(404).json({ msg: "Not found" });
+    if (thread.user.toString() !== userId) {
+        return res.status(403).json({ msg: "Forbidden" });
+    }
+
+    const { title, body, image, video, tags } = req.body;
+
+    if (title !== undefined) thread.title = sanitize(title);
+    if (body !== undefined) thread.body = sanitize(body);
+    if (image !== undefined) thread.image = image;
+    if (video !== undefined) thread.video = video;
+    if (tags !== undefined) thread.tags = tags;
+
+    await thread.save();
+    const populated = await Thread.findById(thread._id).populate("user");
+    return res.json(populated);
+};
+
+export const deleteThread = async (req: Request, res: Response) => {
+    const userId = (req as any).user;
+    const thread = await Thread.findById(req.params.id);
+
+    if (!thread) return res.status(404).json({ msg: "Not found" });
+    if (thread.user.toString() !== userId) {
+        return res.status(403).json({ msg: "Forbidden" });
+    }
+
+    await thread.deleteOne();
+    return res.json({ msg: "Thread deleted" });
 };

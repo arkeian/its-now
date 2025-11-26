@@ -1,0 +1,9 @@
+/* Bootstrap theme variables (converted from SCSS) */
+:root {
+    /* Primary palette */
+    --bs-primary: #3b82f6;
+    --bs-secondary: #6b7280;
+    --bs-dark: #111827;
+    --bs-light: #f3f4f6;
+    --bs-danger: #ef4444;
+}

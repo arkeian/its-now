@@ -1,0 +1,649 @@
+/* Global resets */
+body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.25s ease, color 0.25s ease;
+    scroll-behavior: smooth;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Light / Dark Mode Variables */
+body[data-theme="light"] {
+    --bg: #f7f9fc;
+    --text: #0f172a;
+    --card-bg: #ffffff;
+    --border: #d1d5db;
+    --link: #2563eb;
+    --shadow: rgba(0, 0, 0, 0.08);
+    --skeleton-base: #e5e7eb;
+    --skeleton-highlight: rgba(255, 255, 255, 0.7);
+}
+
+body[data-theme="dark"] {
+    --bg: #0f172a;
+    --text: #e2e8f0;
+    --card-bg: #1e293b;
+    --border: #334155;
+    --link: #60a5fa;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --skeleton-base: #111827;
+    --skeleton-highlight: rgba(148, 163, 184, 0.32);
+}
+
+/* Navbar theming */
+.app-navbar {
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+}
+
+.app-navbar .navbar-brand,
+.app-navbar .nav-link,
+.app-navbar .btn-link {
+    color: var(--text) !important;
+}
+
+.app-navbar .btn-outline-secondary,
+.app-navbar .btn-outline-primary {
+    color: var(--text) !important;
+    border-color: var(--border);
+}
+
+.app-navbar .btn-outline-secondary:hover,
+.app-navbar .btn-outline-primary:hover {
+    background-color: rgba(148, 163, 184, 0.12);
+}
+
+/* Custom sort dropdown */
+.sort-dropdown {
+    position: relative;
+}
+
+.sort-dropdown-menu {
+    position: absolute;
+    left: 50%;
+    top: 110%;
+    transform: translateX(-50%);
+    min-width: 160px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px var(--shadow);
+    padding: 0.35rem 0;
+    z-index: 1000;
+    display: none;
+}
+
+.sort-dropdown:hover .sort-dropdown-menu {
+    display: block;
+}
+
+.sort-dropdown .dropdown-item.active {
+    font-weight: 600;
+}
+
+.sort-dropdown .btn-outline-secondary {
+    background-color: var(--card-bg);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.sort-dropdown-menu .dropdown-item {
+    color: var(--text);
+    padding: 0.4rem 0.9rem;
+}
+
+.sort-dropdown-menu .dropdown-item.active {
+    background-color: rgba(148, 163, 184, 0.28);
+}
+
+.sort-dropdown-menu .dropdown-item:hover {
+    background-color: rgba(148, 163, 184, 0.22);
+}
+
+/* Thread card new layout */
+.thread-card-main {
+    display: flex;
+}
+
+.thread-body-preview {
+    max-height: none;
+    overflow: visible;
+}
+
+.thread-card-link {
+    color: var(--text);
+}
+
+.thread-title {
+    font-size: 1.2em;
+}
+
+.thread-card-actions {
+    color: var(--text);
+}
+
+.thread-meta {
+    color: var(--text);
+}
+
+.thread-username-link {
+    color: var(--link);
+}
+
+.thread-username-link:hover {
+    color: var(--link);
+    text-decoration: underline;
+}
+
+.thread-date {
+    opacity: 0.8;
+}
+
+/* Broadcast preview on thread page */
+.broadcast-preview-card {
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.broadcast-preview-item {
+    background: var(--card-bg);
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+.broadcast-user {
+    max-width: 50%;
+    overflow: hidden;
+}
+
+.broadcast-user .text-truncate {
+    max-width: 100%;
+}
+
+.broadcast-body-preview {
+    font-size: 0.9rem;
+}
+
+.broadcast-title {
+    color: var(--text);
+}
+
+.broadcast-preview-card h2 {
+    color: var(--text);
+}
+
+.broadcast-preview-card .h6 {
+    font-size: 1.2em;
+}
+
+.broadcast-username-link {
+    color: var(--link);
+}
+
+.broadcast-username-link:hover {
+    color: var(--link);
+    text-decoration: underline;
+}
+
+.broadcast-body-preview {
+    color: var(--text);
+}
+
+/* Dashboard layout */
+.dashboard-root {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.dashboard-card {
+    max-width: 720px;
+    width: 100%;
+    padding: 2.5rem 2rem;
+    background: var(--card-bg);
+    color: var(--text);
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 18px 40px var(--shadow);
+}
+
+.dashboard-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.15rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--link);
+    margin-bottom: 2rem;
+}
+
+.dashboard-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+.dashboard-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: var(--text);
+    opacity: 0.9;
+    text-align: justify;
+}
+
+.dashboard-body {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: var(--text);
+    opacity: 0.9;
+    text-align: justify;
+}
+
+.dashboard-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+.dashboard-actions .btn {
+    min-width: 120px;
+}
+
+@media (max-width: 576px) {
+    .dashboard-actions {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .dashboard-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Card styling */
+.card {
+    background: var(--card-bg);
+    border-color: var(--border);
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+/* Modal */
+.modal-backdrop-custom {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+    padding: 1rem;
+}
+
+.modal-dialog-custom {
+    max-width: 480px;
+    width: 100%;
+    background: var(--card-bg);
+    color: var(--text);
+    border-radius: 12px;
+    box-shadow: 0 25px 60px rgba(15, 23, 42, 0.6);
+    padding: 1.5rem;
+}
+
+/* Thread card body (no fade, dynamic height handled in JS preview) */
+.thread-card .thread-body-preview {
+    position: relative;
+}
+
+/* Vote buttons theming */
+.vote-buttons .btn-light {
+    background-color: var(--card-bg);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.vote-buttons .btn-primary,
+.vote-buttons .btn-danger {
+    color: #fff;
+}
+
+.bookmark-btn {
+    background-color: var(--card-bg);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.thread-card-layout {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .thread-card-layout {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 0.5rem;
+    }
+
+    .thread-card-sidebar {
+        flex-direction: row !important;
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* Skeleton shimmer */
+.skeleton {
+    background-color: var(--skeleton-base, var(--card-bg));
+    background-image: linear-gradient(100deg,
+            rgba(255, 255, 255, 0),
+            var(--skeleton-highlight, rgba(255, 255, 255, 0.2)),
+            rgba(255, 255, 255, 0));
+    background-size: 200% 100%;
+    animation: shimmer 1.3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Pull to refresh visual cue */
+.pull-refresh {
+    text-align: center;
+    padding: 8px;
+    color: var(--text);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.pull-refresh.show {
+    opacity: 1;
+}
+
+/* Comment indentation */
+.comment-indent {
+    border-left: 2px solid var(--border);
+    padding-left: 10px;
+    margin-left: 12px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+
+    .thread-card h5,
+    .thread-card h6,
+    .thread-card .h6 {
+        font-size: 1rem;
+    }
+
+    .thread-card .thread-body-preview {
+        font-size: 0.9rem;
+    }
+}
+
+/* Media frames for images and videos */
+.media-frame {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.media-img,
+.media-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+
+.media-video {
+    max-height: 480px;
+}
+
+/* Tiptap Rich Text Editor */
+.rte-root {
+    font-size: 0.95rem;
+}
+
+.rte-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rte-container {
+    position: relative;
+    min-height: 120px;
+}
+
+.rte-placeholder {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.75rem;
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.rte-editor {
+    min-height: 120px;
+    outline: none;
+}
+
+.rte-editor p {
+    margin-bottom: 0.25rem;
+}
+
+/* Form placeholders */
+::placeholder {
+    color: #9ca3af !important;
+    opacity: 1;
+}
+
+/* Form controls theming */
+.form-control,
+.form-select {
+    background-color: var(--card-bg);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--card-bg);
+    color: var(--text);
+    border-color: var(--link);
+    box-shadow: 0 0 0 0.15rem rgba(37, 99, 235, 0.25);
+}
+
+/* Password input */
+.password-input-wrapper {
+    position: relative;
+}
+
+.password-input-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-inner .form-control {
+    padding-right: 2.5rem;
+}
+
+.password-toggle-btn {
+    position: absolute;
+    right: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: #6b7280;
+}
+
+.password-toggle-btn svg {
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.password-toggle-btn.has-error {
+    color: #dc2626;
+}
+
+.password-input-inner .form-control.is-invalid.shake+.password-toggle-btn {
+    animation: input-shake 0.25s ease-in-out 0s 3;
+}
+
+/* Form input error shake (Bootstrap is-invalid override) */
+.form-control.is-invalid,
+.form-select.is-invalid {
+    background-image: none;
+}
+
+.form-control.is-invalid.shake,
+.form-select.is-invalid.shake {
+    animation: input-shake 0.25s ease-in-out 0s 3;
+}
+
+@keyframes input-shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-3px);
+    }
+
+    50% {
+        transform: translateX(3px);
+    }
+
+    75% {
+        transform: translateX(-3px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Toasts */
+.toast-container-custom {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    pointer-events: none;
+}
+
+.toast-custom {
+    min-width: 260px;
+    max-width: 360px;
+    padding: 0.6rem 1rem;
+    border-radius: 0.75rem;
+    color: #fff;
+    font-size: 0.9rem;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+    transform: translateX(-50%);
+    animation: toast-slide-in 0.25s ease-out, toast-fade-out 0.3s ease-in 2.7s forwards;
+    pointer-events: auto;
+}
+
+.toast-success {
+    background: #16a34a;
+}
+
+.toast-error {
+    background: #dc2626;
+}
+
+/* Search bar icon theming */
+.search-icon-wrapper {
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+}
+
+/* Floating create-thread button */
+.create-thread-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 30px var(--shadow);
+}
+
+@keyframes toast-slide-in {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes toast-fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

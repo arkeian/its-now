@@ -5,6 +5,7 @@ const threadSchema = new mongoose.Schema(
         title: { type: String, required: true },
         body: { type: String, required: true },
         image: { type: String },
+        video: { type: String },
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
         upvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         downvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],

@@ -7,6 +7,7 @@ import userRoutes from "./routes/userRoutes";
 import threadRoutes from "./routes/threadRoutes";
 import commentRoutes from "./routes/commentRoutes";
 import broadcastRoutes from "./routes/broadcastRoutes";
+import uploadRoutes from "./routes/uploadRoutes";
 
 dotenv.config();
 connectDB();
@@ -20,6 +21,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/threads", threadRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/broadcasts", broadcastRoutes);
+app.use("/api/upload", uploadRoutes);
 
 app.use((_, res) => {
     res.status(404).json({ msg: "Not found" });

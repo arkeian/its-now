@@ -8,12 +8,13 @@ export const getBroadcasts = async (_: Request, res: Response) => {
 };
 
 export const createBroadcast = async (req: Request, res: Response) => {
-    const { title, body, image, tags } = req.body;
+    const { title, body, image, video, tags } = req.body;
 
     const post = await Broadcast.create({
         title: sanitize(title),
         body: sanitize(body),
         image,
+        video,
         tags,
         user: (req as any).user
     });
@@ -36,4 +37,39 @@ export const voteBroadcast = async (req: Request, res: Response) => {
 
     await post.save();
     res.json(post);
+};
+
+export const updateBroadcast = async (req: Request, res: Response) => {
+    const userId = (req as any).user;
+    const post = await Broadcast.findById(req.params.id);
+
+    if (!post) return res.status(404).json({ msg: "Not found" });
+    if (post.user.toString() !== userId) {
+        return res.status(403).json({ msg: "Forbidden" });
+    }
+
+    const { title, body, image, video, tags } = req.body;
+
+    if (title !== undefined) post.title = sanitize(title);
+    if (body !== undefined) post.body = sanitize(body);
+    if (image !== undefined) post.image = image;
+    if (video !== undefined) post.video = video;
+    if (tags !== undefined) post.tags = tags;
+
+    await post.save();
+    const populated = await Broadcast.findById(post._id).populate("user");
+    return res.json(populated);
+};
+
+export const deleteBroadcast = async (req: Request, res: Response) => {
+    const userId = (req as any).user;
+    const post = await Broadcast.findById(req.params.id);
+
+    if (!post) return res.status(404).json({ msg: "Not found" });
+    if (post.user.toString() !== userId) {
+        return res.status(403).json({ msg: "Forbidden" });
+    }
+
+    await post.deleteOne();
+    return res.json({ msg: "Broadcast deleted" });
 };
