@@ -10,7 +10,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { FiTrash2, FiMessageCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Modal from "../components/Modal/Modal";
-import VideoEmbed from "../components/Upload/VideoEmbed";
+import VideoEmbed from "../components/Upload/VideoUpload";
 import { useToast } from "../components/Toast/Toast";
 
 const BroadcastPage = () => {

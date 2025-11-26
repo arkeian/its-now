@@ -10,7 +10,7 @@ import { useAutoSave } from "../hooks/useAutoSave";
 import CommentSkeleton from "../components/Skeleton/CommentSkeleton";
 import RichTextEditor from "../components/RichTextEditor/RichTextEditor";
 import LinkPreview from "../components/Preview/LinkPreview";
-import VideoEmbed from "../components/Upload/VideoEmbed";
+import VideoEmbed from "../components/Upload/VideoUpload";
 import { extractLinks } from "../utils/linkPreview";
 
 const ThreadPage = () => {

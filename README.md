@@ -20,6 +20,7 @@ Dibuat oleh:
 - [Deskripsi Singkat](#deskripsi-singkat)
 - [Latar Belakang Masalah](#latar-belakang-masalah)
 - [Solusi yang Ditawarkan](#solusi-yang-ditawarkan)
+- [Struktur Project](#struktur-project)
 
 ## Deskripsi Singkat
 
@@ -63,3 +64,155 @@ Di lingkungan ITS, persebaran informasi seputar ITS masih belum efisien dikarena
 	<br><br>
 	&emsp;Harapannya dengan pendekatan <i>discussion thread</i> ini diskusi terkait suatu topik bisa menjadi lebih <i>non-intrusive</i> atau tidak mengganggu mahasiswa lain yang mungkin kurang tertarik dengan topik yang dibahas tersebut ataupun lagi tidak ingin mendapatkan notifikasi tidak penting yang umumnya didapatkan saat adanya diskusi melalui <i>platform</i> sosial lainnya seperti Whatsapp.
 </p>
+
+## Struktur Project
+
+```bash
+its-now/
+├── README.md
+├── package.json
+├── package-lock.json
+├── node_modules/
+├── backend/
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── tsconfig.json
+│   ├── .env
+│   ├── node_modules/
+│   └── src/
+│       ├── server.ts
+│       ├── configs/
+│       │   ├── jwt.ts
+│       │   └── mongo.ts
+│       ├── controllers/
+│       │   ├── authController.ts
+│       │   ├── broadcastController.ts
+│       │   ├── commentController.ts
+│       │   ├── threadController.ts
+│       │   └── userController.ts
+│       ├── middlewares/
+│       │   └── authMiddleware.ts
+│       ├── models/
+│       │   ├── Broadcast.ts
+│       │   ├── Comment.ts
+│       │   ├── Thread.ts
+│       │   └── User.ts
+│       ├── routes/
+│       │   ├── authRoutes.ts
+│       │   ├── broadcastRoutes.ts
+│       │   ├── commentRoutes.ts
+│       │   ├── threadRoutes.ts
+│       │   ├── uploadRoutes.ts
+│       │   └── userRoutes.ts
+│       └── utils/
+│           ├── htmlSanitation.ts
+│           ├── inputValidators.ts
+│           └── passwordHashing.ts
+└── frontend/
+	├── eslint.config.js
+	├── index.html
+	├── package.json
+	├── package-lock.json
+	├── tsconfig.json
+	├── tsconfig.app.json
+	├── tsconfig.node.json
+	├── vite.config.ts
+	├── node_modules/
+	├── public/
+	│   └── vite.svg
+	└── src/
+		├── App.css
+		├── App.tsx
+		├── index.css
+		├── main.tsx
+		├── router.tsx
+		├── apis/
+		│   ├── authApi.ts
+		│   ├── broadcastsApi.ts
+		│   ├── commentsApi.ts
+		│   ├── threadsApi.ts
+		│   └── usersApi.ts
+		├── assets/
+		├── components/
+		│   ├── AutoSaveIndicator/
+		│   │   └── AutoSaveIndicator.tsx
+		│   ├── BookmarkButton/
+		│   │   └── BookmarkButton.tsx
+		│   ├── Comment/
+		│   │   └── Comment.tsx
+		│   ├── CreateThreadButton/
+		│   │   └── CreateThreadButton.tsx
+		│   ├── Form/
+		│   │   ├── PasswordInput.tsx
+		│   │   └── TextInput.tsx
+		│   ├── GoToTopButton/
+		│   │   └── GoToTopButton.tsx
+		│   ├── Loader/
+		│   │   └── Loader.tsx
+		│   ├── Modal/
+		│   │   └── Modal.tsx
+		│   ├── Navbar/
+		│   │   └── Navbar.tsx
+		│   ├── Preview/
+		│   │   └── LinkPreview.tsx
+		│   ├── RichTextEditor/
+		│   │   └── RichTextEditor.tsx
+		│   ├── SearchBar/
+		│   │   ├── SearchBar.tsx
+		│   │   └── SearchSuggestions.tsx
+		│   ├── Skeleton/
+		│   │   ├── CommentSkeleton.tsx
+		│   │   └── Skeleton.tsx
+		│   ├── SortDropdown/
+		│   │   └── SortDropdown.tsx
+		│   ├── ThreadCard/
+		│   │   └── ThreadCard.tsx
+		│   ├── Toast/
+		│   │   └── Toast.tsx
+		│   ├── Upload/
+		│   │   ├── ImageUpload.tsx
+		│   │   └── VideoUpload.tsx
+		│   ├── UserIcon/
+		│   │   └── UserIcon.tsx
+		│   └── VoteButtons/
+		│   │   └── VoteButtons.tsx
+		├── contexts/
+		│   ├── AuthContext.tsx
+		│   ├── BookmarkContext.tsx
+		│   └── ThemeContext.tsx
+		├── hooks/
+		│   ├── useAuth.ts
+		│   ├── useAutoSave.ts
+		│   ├── useHotkeys.ts
+		│   ├── useLocalStorage.ts
+		│   ├── useRequireLogin.ts
+		│   └── useScrollMemory.ts
+		├── layouts/
+		│   └── RootLayout.tsx
+		├── pages/
+		│   ├── Bookmark.tsx
+		│   ├── BroadcastDetail.tsx
+		│   ├── BroadcastSummary.tsx
+		│   ├── CreateBroadcast.tsx
+		│   ├── CreateThread.tsx
+		│   ├── Dashboard.tsx
+		│   ├── EditProfile.tsx
+		│   ├── Login.tsx
+		│   ├── NotFound.tsx
+		│   ├── Register.tsx
+		│   ├── ThreadDetail.tsx
+		│   ├── ThreadSummary.tsx
+		│   └── UserProfile.tsx
+		├── styles/
+		│   ├── global.css
+		│   └── theme.css
+		└── utils/
+			├── accessibility.ts
+			├── collapseArrow.tsx
+			├── jwt.ts
+			├── linkPreview.ts
+			├── sanitize.ts
+			├── threadPreview.ts
+			├── threadSorter.ts
+			└── validators.ts
+```
